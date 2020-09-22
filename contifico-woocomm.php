@@ -11,7 +11,10 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.txt
 
 
 /* after an order has been processed, we will use the  'woocommerce_thankyou' hook, to add our function, to send the data */
-add_action('woocommerce_thankyou', 'wdm_send_order_to_ext'); 
+//add_action('woocommerce_thankyou', 'wdm_send_order_to_ext'); 
+
+//Changed the hook to order status completed
+add_action('woocommerce_order_status_completed', 'wdm_send_order_to_ext'); 
 function wdm_send_order_to_ext( $order_id ){
     // get order object and order details
     $order = new WC_Order( $order_id ); 
@@ -95,20 +98,19 @@ function wdm_send_order_to_ext( $order_id ){
 
 //variables from Contifico:
  
-
-
+ 
 
         $data = array(
 
 
-            'pos' => 'ceaa9097-1d76-4eb8-0000-6f412fa0297b',
+            'pos' => '02914770-4a13-45f0-bfe3-c2e4666cdbcf',
             'fecha_emision' => '21/09/2020',
             'tipo_documento' => 'FAC',
             'documento' => '001-001-000008089',
             'estado' => 'P',
             'electronico' => true,
             'autorizacion'=> '',
-            'caja_id': null,
+            'caja_id' => null,
 
             'cliente' => array(
         'ruc' => '0914848015001',
@@ -128,7 +130,7 @@ function wdm_send_order_to_ext( $order_id ){
         'razon_social' => 'SERVICIOS TRUE NORTH TRUENORTH S.A',
         'telefonos' => '0969078192',
         'direccion' => 'QUITO / Parroquia Tababela S/N vía a Y SN Y Aeropuerto Internacional Maris',
-        'tipo' => 'E',
+        'tipo' => 'J',
         'email' => 'doc.electronicostruenorth@gmail.com',
         'es_extranjero' => false
                 
@@ -145,6 +147,7 @@ function wdm_send_order_to_ext( $order_id ){
 
 
         'detalles' => array(
+
         'producto_id' => 'RZxg87rxLh9Mb1pV',
         'cantidad' => 1.00,
         'precio' => 1.00,
@@ -160,7 +163,7 @@ function wdm_send_order_to_ext( $order_id ){
                
     'forma_cobro' => 'TC',
     'monto' => 1.51,
-    'numero_cheque' => '4567897',
+    'numero_cheque' => '45627897',
     'tipo_ping' => 'D'
                         
                     ),
@@ -176,7 +179,7 @@ $data_string = json_encode($data);
 
 
 $headers = array( 
-    'Authorization: ApiKey FrguR1kDpFHaXHLQwplZ2CwTX3p8p9XHVTnukL98V5U',
+    'Authorization: 02914770-4a13-45f0-bfe3-c2e4666cdbcf',
     'Content-Type: application/json'
 );
 

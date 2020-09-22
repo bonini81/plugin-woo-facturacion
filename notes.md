@@ -9,6 +9,8 @@ Ejemplo de como integrar Woocommerce con algun sistema de 3eros de contabilidad:
 
 https://wisdmlabs.com/blog/woocommerce-order-management-system-integration/
 
+https://yousuckatwordpress.com/call-a-php-function-after-woocommerce-order-completed/
+ 
 
 
 3. Dummy Data
@@ -30,6 +32,11 @@ Contraseña: APIPRUEBA
 
 En esta cuenta podrá visualizar las pruebas realizadas por medio del api en interfaz, ejemplo la creación de un documento electrónico, este se enviara a la cuenta de PRUEBA CONTIFICO INTEGRACIÓN API.
 Cualquier consulta, por favor notificarnos.
+
+
+2.- Las pruebas de facturación las puede revisar en Transacciones / Compra venta / Documentos. 
+3.- Se utilizar el api key para consultas y el api token para envío de información en donde le pide POS:"xxx-xxx-xxx-xxxx-xxxxx"
+
 
 #21 Septiembre 2020
 
