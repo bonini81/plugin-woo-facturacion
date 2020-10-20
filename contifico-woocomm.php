@@ -83,18 +83,19 @@ function wdm_send_order_to_ext( $order_id ){
     $api_password = '02914770-4a13-45f0-bfe3-c2e4666cdbcf'; //  for now token by bonini81
 
     // to test out the API, set $api_mode as ‘sandbox’
-    $api_mode = 'sandbox';
+   /* $api_mode = 'sandbox';
     if($api_mode == 'sandbox'){
         // sandbox URL example
         $endpoint = "https://api.contifico.com/sistema/api/v1/registro/documento/"; 
-    }
-    else{
+    }*/
+   /* else{
         // production URL example
         $endpoint = "https://api.contifico.com/sistema/api/v1/registro/documento/"; 
-    }
+    }*/
 
         // setup the data which has to be sent
 
+        $endpoint = "https://api.contifico.com/sistema/api/v1/registro/documento/"; 
 
 //variables from Contifico:
  
