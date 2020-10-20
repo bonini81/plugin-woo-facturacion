@@ -102,74 +102,75 @@ function wdm_send_order_to_ext( $order_id ){
 
         $data = array(
 
-
             'pos' => '02914770-4a13-45f0-bfe3-c2e4666cdbcf',
-            'fecha_emision' => '21/09/2020',
-            'tipo_documento' => 'FAC',
-            'documento' => '001-001-000008089',
-            'estado' => 'P',
-            'electronico' => true,
-            'autorizacion'=> '',
-            'caja_id' => null,
-
-            'cliente' => array(
-        'ruc' => '0914848015001',
-        'cedula' => '0914848015',
-        'razon_social' => 'Andres Dominguez Bonini',
-        'telefonos' => '0969078192',
-        'direccion' => 'Juan de Herrera s4 239 Quito',
-        'tipo' => 'N',
-        'email' => 'info@pugle.net',
-        'es_extranjero' => false
-                
-            ),
-
-            'vendedor' => array(
-                'ruc' => '1792785537001',
-        'cedula' => '1792785537',
-        'razon_social' => 'SERVICIOS TRUE NORTH TRUENORTH S.A',
-        'telefonos' => '0969078192',
-        'direccion' => 'QUITO / Parroquia Tababela S/N vía a Y SN Y Aeropuerto Internacional Maris',
-        'tipo' => 'J',
-        'email' => 'doc.electronicostruenorth@gmail.com',
-        'es_extranjero' => false
-                
-            ),
-
-            'descripcion' => 'FACTURA 001',
-            'subtotal_0' => 0.00,
-            'subtotal_12' => 1.35,
-            'iva' => 0.16,
-            'servicio' => 0.00,
-            'total' => 1.51,
-            'adicional1' => '',
-            'adicional2' => '',
-
-
-        'detalles' => array(
-
-        'producto_id' => 'RZxg87rxLh9Mb1pV',
-        'cantidad' => 1.00,
-        'precio' => 1.00,
-        'porcentaje_iva' => 12,
-        'porcentaje_descuento' => 0.00,
-        'base_cero' => 0.00,
-        'base_gravable' => 1.00,
-        'base_no_gravable' => 0.00
-                
-            ),
-
-            'cobros' => array(
-               
-    'forma_cobro' => 'TC',
-    'monto' => 1.51,
-    'numero_cheque' => '45627897',
-    'tipo_ping' => 'D'
-                        
-                    ),
-
-
-        );
+              'fecha_emision' => '15/10/2020',
+              'tipo_documento' => 'FAC',
+              'documento' => '001-002-123456719',
+              'estado' => 'P',
+              'electronico' => true,
+              'autorizacion'=> '',
+              'caja_id' => null,
+          
+              'cliente' => array(
+          'ruc' => '1704013000001',
+          'cedula' => '1704013000',
+          'razon_social' => 'Eduardo Mejia',
+          'telefonos' => '0969038292',
+          'direccion' => 'Juan de Herrera s4 235 Quito',
+          'tipo' => 'N',
+          'email' => 'edu@hotmail.com',
+          'es_extranjero' => false
+                  
+              ),
+          
+              'vendedor' => array(
+                  'ruc' => '1792785537001',
+          'cedula' => '1708457229',
+          'razon_social' => 'SERVICIOS TRUE NORTH TRUENORTH S.A',
+          'telefonos' => '0969078192',
+          'direccion' => 'QUITO / Parroquia Tababela S/N vía a Y SN Y Aeropuerto Internacional Maris',
+          'tipo' => 'J',
+          'email' => 'doc.electronicostruenorth@gmail.com',
+          'es_extranjero' => false
+                  
+              ),
+          
+              'descripcion' => 'FACTURA 0011',
+              'subtotal_0' => 0.00,
+              'subtotal_12' => 10.00,
+              'iva' => 1.2,
+              'servicio' => 0.00,
+              'total' => 11.20,
+              'adicional1' => '',
+              'adicional2' => '',
+          
+          
+          'detalles' => array(
+          
+          
+          array(
+          'producto_id' => 'grRbDk2l51ulGa6L',
+          'cantidad' => 1.00,
+          'precio' => 10.00,
+          'porcentaje_iva' => 12,
+          'porcentaje_descuento' => 0.00,
+          'base_cero' => 0.00,
+          'base_gravable' => 10.00,
+          'base_no_gravable' => 0.00
+                ),  
+              ),
+          
+              'cobros' => array(
+                   array(
+          'forma_cobro' => 'TC',
+          'monto' => 11.20,
+          'numero_cheque' => '',
+          'tipo_ping' => 'D'
+                      ),    
+                      ),
+          
+          );
+  
 
 
 $data_string = json_encode($data);    
@@ -178,10 +179,10 @@ $data_string = json_encode($data);
 
 
 
-$headers = array( 
+/*$headers = array( 
     'Authorization: 02914770-4a13-45f0-bfe3-c2e4666cdbcf',
     'Content-Type: application/json'
-);
+);*/
 
             // send API request via cURL
         $ch = curl_init();
@@ -189,13 +190,17 @@ $headers = array(
         /* set the complete URL, to process the order on the external system. Let’s consider http://example.com/buyitem.php is the URL, which invokes the API */
         curl_setopt($ch, CURLOPT_URL, $endpoint);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers );  
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array( 
+            'Authorization: FrguR1kDpFHaXHLQwplZ2CwTX3p8p9XHVTnukL98V5U',
+            'Content-Type: application/json'                                                                         
+        )); 
         
     
-        $response = curl_exec ($ch);
-    
+        $response = curl_exec($ch);
+        print_r($response);
+
         curl_close ($ch);
         
         // the handle response    
