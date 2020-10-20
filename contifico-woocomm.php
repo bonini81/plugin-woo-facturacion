@@ -86,11 +86,11 @@ function wdm_send_order_to_ext( $order_id ){
     $api_mode = 'sandbox';
     if($api_mode == 'sandbox'){
         // sandbox URL example
-        $endpoint = "https://api.contifico.com/sistema/api/v1/documento/"; 
+        $endpoint = "https://api.contifico.com/sistema/api/v1/registro/documento/"; 
     }
     else{
         // production URL example
-        $endpoint = "https://api.contifico.com/sistema/api/v1/documento/"; 
+        $endpoint = "https://api.contifico.com/sistema/api/v1/registro/documento/"; 
     }
 
         // setup the data which has to be sent
@@ -103,9 +103,9 @@ function wdm_send_order_to_ext( $order_id ){
         $data = array(
 
             'pos' => '02914770-4a13-45f0-bfe3-c2e4666cdbcf',
-              'fecha_emision' => '15/10/2020',
+              'fecha_emision' => '20/10/2020',
               'tipo_documento' => 'FAC',
-              'documento' => '001-002-123456719',
+              'documento' => '001-003-223456719',
               'estado' => 'P',
               'electronico' => true,
               'autorizacion'=> '',
@@ -135,7 +135,7 @@ function wdm_send_order_to_ext( $order_id ){
                   
               ),
           
-              'descripcion' => 'FACTURA 0011',
+              'descripcion' => 'FACTURA 0012',
               'subtotal_0' => 0.00,
               'subtotal_12' => 10.00,
               'iva' => 1.2,
