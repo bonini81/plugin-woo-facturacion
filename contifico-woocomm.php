@@ -104,22 +104,22 @@ function wdm_send_order_to_ext( $order_id ){
         $data = array(
 
             'pos' => '02914770-4a13-45f0-bfe3-c2e4666cdbcf',
-              'fecha_emision' => '20/10/2020',
+              'fecha_emision' => date("d/m/Y"),
               'tipo_documento' => 'FAC',
-              'documento' => '001-003-223456719',
+              'documento' => '001-004-323456719',
               'estado' => 'P',
               'electronico' => true,
               'autorizacion'=> '',
               'caja_id' => null,
           
               'cliente' => array(
-          'ruc' => '1704013000001',
+          'ruc' => $cedula . '001',
           'cedula' => '1704013000',
-          'razon_social' => 'Eduardo Mejia',
-          'telefonos' => '0969038292',
-          'direccion' => 'Juan de Herrera s4 235 Quito',
+          'razon_social' => $address['billing_first_name'] . $address['billing_last_name'],
+          'telefonos' => $phone,
+          'direccion' => $address['billing_address_1'],
           'tipo' => 'N',
-          'email' => 'edu@hotmail.com',
+          'email' => $email,
           'es_extranjero' => false
                   
               ),

@@ -3,6 +3,9 @@
 1. Documentacion para crear la factura electronica en contifico:
 http://contifico.github.io/registro/documentoelectronico/
 
+
+
+
 2. Ejemplo de Wordpress:
 
 Ejemplo de como integrar Woocommerce con algun sistema de 3eros de contabilidad:
@@ -13,7 +16,11 @@ https://yousuckatwordpress.com/call-a-php-function-after-woocommerce-order-compl
  
 
 
+4. Progressive number generator
+
 3. Dummy Data
+
+4. Numeracion de factura en Contifico o numero de documento: 001-004
 
 
 ADJUNTO API DE PRUEBAS
