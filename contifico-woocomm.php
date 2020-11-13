@@ -17,15 +17,19 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.txt
 add_action('woocommerce_order_status_completed', 'wdm_send_order_to_ext'); 
 function wdm_send_order_to_ext( $order_id ){
     // get order object and order details
-    $order = new WC_Order( $order_id ); 
+
+    $order = wc_get_order( $order_id ); 
+    //$order = new WC_Order( $order_id ); 
     $email = $order->billing_email;
     $phone = $order->billing_phone;
     $shipping_type = $order->get_shipping_method();
     $shipping_cost = $order->get_total_shipping();
+    $fecha = date("d/m/Y");
 
     // set the address fields
     $user_id = $order->user_id;
-    $address_fields = array('country',
+    $address_fields = array( 
+        'country',
         'title',
         'first_name',
         'last_name',
@@ -59,19 +63,26 @@ function wdm_send_order_to_ext( $order_id ){
     // get product details
     $items = $order->get_items();
     
+    $item_sku = array();
     $item_name = array();
     $item_qty = array();
     $item_price = array();
-    $item_sku = array();
-        
-    foreach( $items as $key => $item){
+    $iva = 12;
+    $porcentaje_descuento = 0.00;
+    $base_cero = 0.00;
+    $base_gravable = $item_price;
+    $base_no_gravable = 0.00;
+
+ foreach( $items as $key => $item){
         $item_name[] = $item['name'];
         $item_qty[] = $item['qty'];
         $item_price[] = $item['line_total'];
-        
-        $item_id = $item['product_id'];
-        $product = new WC_Product($item_id);
-        $item_sku[] = $product->get_sku();
+          $iva = 12;
+    $porcentaje_descuento = 0.00;
+    $base_cero = 0.00;
+    $base_gravable = $item_price;
+    $base_no_gravable = 0.00;
+      //  $item_sku[] = $product->get_sku();
     }
     
     /* for online payments, send across the transaction ID/key. If the payment is handled offline, you could send across the order key instead */
@@ -104,9 +115,9 @@ function wdm_send_order_to_ext( $order_id ){
         $data = array(
 
             'pos' => '02914770-4a13-45f0-bfe3-c2e4666cdbcf',
-              'fecha_emision' => date("d/m/Y"),
+              'fecha_emision' =>  $fecha,
               'tipo_documento' => 'FAC',
-              'documento' => '001-004-323456719',
+              'documento' => '001-004-423456719',
               'estado' => 'P',
               'electronico' => true,
               'autorizacion'=> '',
@@ -136,7 +147,7 @@ function wdm_send_order_to_ext( $order_id ){
                   
               ),
           
-              'descripcion' => 'FACTURA 0012',
+              'descripcion' => 'FACTURA 0030',
               'subtotal_0' => 0.00,
               'subtotal_12' => 10.00,
               'iva' => 1.2,
@@ -146,18 +157,18 @@ function wdm_send_order_to_ext( $order_id ){
               'adicional2' => '',
           
           
-          'detalles' => array(
+          'detalles' =>  array(
           
           
           array(
-          'producto_id' => 'grRbDk2l51ulGa6L',
-          'cantidad' => 1.00,
-          'precio' => 10.00,
-          'porcentaje_iva' => 12,
-          'porcentaje_descuento' => 0.00,
-          'base_cero' => 0.00,
-          'base_gravable' => 10.00,
-          'base_no_gravable' => 0.00
+          'producto_id' =>  'grRbDk2l51ulGa6L',
+          'cantidad' => $item_qty,
+          'precio' => $item_price,
+          'porcentaje_iva' => $iva,
+          'porcentaje_descuento' => $porcentaje_descuento,
+          'base_cero' => $base_cero,
+          'base_gravable' => $item_price,
+          'base_no_gravable' => $base_no_gravable
                 ),  
               ),
           

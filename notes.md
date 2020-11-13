@@ -4,7 +4,8 @@
 http://contifico.github.io/registro/documentoelectronico/
 
 
-
+foreach loop into a variable
+https://gist.github.com/animista01/6630934
 
 2. Ejemplo de Wordpress:
 
@@ -13,8 +14,17 @@ Ejemplo de como integrar Woocommerce con algun sistema de 3eros de contabilidad:
 https://wisdmlabs.com/blog/woocommerce-order-management-system-integration/
 
 https://yousuckatwordpress.com/call-a-php-function-after-woocommerce-order-completed/
- 
 
+Ejemplo Paymentez + Contifico
+https://www.watchout.ec/
+ 
+3. Ejemplo Pablo Hernandez
+class_woo-contifico-admin.php
+
+Linea 1001	public function contifico_call( $order_id ) {
+
+
+3. A. How to handle, $Order object. https://www.businessbloomer.com/woocommerce-easily-get-order-info-total-items-etc-from-order-object/
 
 4. Progressive number generator
 
