@@ -61,22 +61,24 @@ function wdm_send_order_to_ext( $order_id ){
     }
     
     // get product details
-    $items = $order->get_items();
+    $order_items = $order->get_items();
     
-    $item_sku = array();
-    $item_name = array();
-    $item_qty = array();
-    $item_price = array();
+    /*$item_sku = [];
+    $item_name = [];
+    $item_qty = [];
+    $item_price = [];
     $iva = 12;
     $porcentaje_descuento = 0.00;
     $base_cero = 0.00;
     $base_gravable = $item_price;
-    $base_no_gravable = 0.00;
+    $base_no_gravable = 0.00;*/
 
- foreach( $items as $key => $item){
-        $item_name[] = $item['name'];
-        $item_qty[] = $item['qty'];
-        $item_price[] = $item['line_total'];
+    foreach ( $order_items as $item ) {
+        $product_wc = $item->get_product();
+        $sku = $product_wc->get_sku();
+        $item_qty = (float) $item['quantity'];
+        $item_price = (float) $item['total'];
+        //$total = $item->get_total();
           $iva = 12;
     $porcentaje_descuento = 0.00;
     $base_cero = 0.00;
@@ -117,7 +119,7 @@ function wdm_send_order_to_ext( $order_id ){
             'pos' => '02914770-4a13-45f0-bfe3-c2e4666cdbcf',
               'fecha_emision' =>  $fecha,
               'tipo_documento' => 'FAC',
-              'documento' => '001-001-423456719',
+              'documento' => '001-001-423456725',
               'estado' => 'P',
               'electronico' => true,
               'autorizacion'=> '',
@@ -147,12 +149,12 @@ function wdm_send_order_to_ext( $order_id ){
                   
               ),
           
-              'descripcion' => 'FACTURA 0030',
+              'descripcion' => 'FACTURA 0036',
               'subtotal_0' => 0.00,
               'subtotal_12' => 10.00,
               'iva' => 1.2,
               'servicio' => 0.00,
-              'total' => 11.20,
+              'total' =>  11.20,
               'adicional1' => '',
               'adicional2' => '',
           
@@ -161,13 +163,13 @@ function wdm_send_order_to_ext( $order_id ){
           
           
           array(
-          'producto_id' =>  'grRbDk2l51ulGa6L',
-          'cantidad' => $item_qty,
-          'precio' => $item_price,
+          'producto_id' =>  $sku,
+          'cantidad' =>  $item_qty,
+          'precio' =>  $item_price,
           'porcentaje_iva' => $iva,
           'porcentaje_descuento' => $porcentaje_descuento,
           'base_cero' => $base_cero,
-          'base_gravable' => $item_price,
+          'base_gravable' =>  $item_price,
           'base_no_gravable' => $base_no_gravable
                 ),  
               ),
@@ -175,7 +177,7 @@ function wdm_send_order_to_ext( $order_id ){
               'cobros' => array(
                    array(
           'forma_cobro' => 'TC',
-          'monto' => 11.20,
+          'monto' =>  11.20,
           'numero_cheque' => '',
           'tipo_ping' => 'D'
                       ),    
