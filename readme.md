@@ -1,0 +1,1 @@
+#Basically a simple plugin to make invoices of sales from a woocommerce shop. Accounting software for the invoices to be announced soon.  Basically, the plugin grabs the sales, client and shop owner data and sends it to the Accounting software to make the invoices.
