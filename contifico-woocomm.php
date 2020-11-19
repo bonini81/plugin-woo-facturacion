@@ -73,18 +73,36 @@ function wdm_send_order_to_ext( $order_id ){
     $base_gravable = $item_price;
     $base_no_gravable = 0.00;*/
 
+
+    $items = [];
+
+
     foreach ( $order_items as $item ) {
         $product_wc = $item->get_product();
         $sku = $product_wc->get_sku();
         $item_qty = (float) $item['quantity'];
         $item_price = (float) $item['total'];
-        //$total = $item->get_total();
+      
+
           $iva = 12;
     $porcentaje_descuento = 0.00;
     $base_cero = 0.00;
     $base_gravable = $item_price;
     $base_no_gravable = 0.00;
-      //  $item_sku[] = $product->get_sku();
+      
+    $items[] = [
+
+                'producto_id' =>          $sku,
+				'cantidad'             => $item_qty,
+				'precio'               => $item_price,
+				'porcentaje_iva'       => $iva,
+				'porcentaje_descuento' => $porcentaje_descuento,
+				'base_cero'            => $base_cero,
+				'base_gravable'        => $base_gravable,
+				'base_no_gravable'     => $base_no_gravable
+
+    ];
+    
     }
     
     /* for online payments, send across the transaction ID/key. If the payment is handled offline, you could send across the order key instead */
@@ -119,7 +137,7 @@ function wdm_send_order_to_ext( $order_id ){
             'pos' => '02914770-4a13-45f0-bfe3-c2e4666cdbcf',
               'fecha_emision' =>  $fecha,
               'tipo_documento' => 'FAC',
-              'documento' => '001-001-423456725',
+              'documento' => '001-001-423456727',
               'estado' => 'P',
               'electronico' => true,
               'autorizacion'=> '',
@@ -149,35 +167,22 @@ function wdm_send_order_to_ext( $order_id ){
                   
               ),
           
-              'descripcion' => 'FACTURA 0036',
+              'descripcion' => 'FACTURA 0037',
               'subtotal_0' => 0.00,
-              'subtotal_12' => 10.00,
-              'iva' => 1.2,
+              'subtotal_12' => 25.00,
+              'iva' => 3,
               'servicio' => 0.00,
-              'total' =>  11.20,
+              'total' =>  28.00,
               'adicional1' => '',
               'adicional2' => '',
           
           
-          'detalles' =>  array(
-          
-          
-          array(
-          'producto_id' =>  $sku,
-          'cantidad' =>  $item_qty,
-          'precio' =>  $item_price,
-          'porcentaje_iva' => $iva,
-          'porcentaje_descuento' => $porcentaje_descuento,
-          'base_cero' => $base_cero,
-          'base_gravable' =>  $item_price,
-          'base_no_gravable' => $base_no_gravable
-                ),  
-              ),
+          'detalles' =>  $items,
           
               'cobros' => array(
                    array(
           'forma_cobro' => 'TC',
-          'monto' =>  11.20,
+          'monto' =>  28.00,
           'numero_cheque' => '',
           'tipo_ping' => 'D'
                       ),    
