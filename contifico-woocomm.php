@@ -40,6 +40,7 @@ function wdm_send_order_to_ext( $order_id ){
         'address_4',
         'city',
         'state',
+        'wooccm13',
         'postcode');
 
     $address = array();
@@ -137,15 +138,15 @@ function wdm_send_order_to_ext( $order_id ){
             'pos' => '02914770-4a13-45f0-bfe3-c2e4666cdbcf',
               'fecha_emision' =>  $fecha,
               'tipo_documento' => 'FAC',
-              'documento' => '001-001-423456727',
+              'documento' => '001-001-423456730',
               'estado' => 'P',
               'electronico' => true,
               'autorizacion'=> '',
               'caja_id' => null,
           
               'cliente' => array(
-          'ruc' => '1704013000001',
-          'cedula' => '1704013000',
+          'ruc' => $address['billing_wooccm13'] . '001',
+          'cedula' => $address['billing_wooccm13'],
           'razon_social' => $address['billing_first_name'],
           'telefonos' => $phone,
           'direccion' => $address['billing_address_1'],
@@ -156,6 +157,7 @@ function wdm_send_order_to_ext( $order_id ){
               ),
           
               'vendedor' => array(
+                  
                   'ruc' => '1792785537001',
           'cedula' => '1708457229',
           'razon_social' => 'SERVICIOS TRUE NORTH TRUENORTH S.A',
@@ -167,7 +169,7 @@ function wdm_send_order_to_ext( $order_id ){
                   
               ),
           
-              'descripcion' => 'FACTURA 0037',
+              'descripcion' => 'FACTURA 0040',
               'subtotal_0' => 0.00,
               'subtotal_12' => 25.00,
               'iva' => 3,
